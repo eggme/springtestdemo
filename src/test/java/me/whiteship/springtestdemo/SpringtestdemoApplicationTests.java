@@ -1,5 +1,6 @@
-package me.whiteship.springtestdemo.sample;
+package me.whiteship.springtestdemo;
 
+import me.whiteship.springtestdemo.sample.SampleService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package me.whiteship.springtestdemo;
+package me.whiteship.springtestdemo.sample;
 
 
 import org.springframework.boot.test.context.SpringBootTest;
