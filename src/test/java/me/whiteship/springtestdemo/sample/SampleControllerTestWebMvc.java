@@ -1,13 +1,16 @@
 package me.whiteship.springtestdemo.sample;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.system.OutputCaptureRule;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -17,6 +20,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(SampleController.class)
 public class SampleControllerTestWebMvc {
+
+    @Rule
+    public OutputCaptureRule outputCaptureRule = new OutputCaptureRule();
 
     @MockBean
     SampleService mockSampleService;
@@ -32,6 +38,10 @@ public class SampleControllerTestWebMvc {
                 .andExpect(content().string("hello seungjun"))
                 .andExpect(status().isOk())
                 .andDo(print());
+
+        assertThat(outputCaptureRule.toString())
+                    .contains("eggme")
+                    .contains("skip");
 ;    }
 
 }
